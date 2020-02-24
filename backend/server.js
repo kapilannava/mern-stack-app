@@ -1,17 +1,19 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000; // Step 1
 
 let Todo = require('./todo.model');
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
+// STEP 2
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 connection.once('open', function(){
@@ -68,6 +70,14 @@ todoRoutes.route('/update/:id').post(function(req, res){
 
 
 app.use('/todos', todoRoutes);
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static ( 'client/build' ));
+
+    app.get('*', (req, res) =>{
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
+}
 
 app.listen(PORT, function(){
     console.log("Server is running on Port: "+PORT);
