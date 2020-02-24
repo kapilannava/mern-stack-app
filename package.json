@@ -1,0 +1,22 @@
+{
+  "name": "react-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/server.js",
+    "heroku-postbuild": "cd mern-todo-app && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kapilannava/mern-stack-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kapilannava/mern-stack-app/issues"
+  },
+  "homepage": "https://github.com/kapilannava/mern-stack-app#readme"
+}
