@@ -9,7 +9,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./backend/server.js",
-    "postinstall": "ng build",
     "heroku-postbuild": "cd mern-todo-app && npm install && npm run build"
   },
   "repository": {
